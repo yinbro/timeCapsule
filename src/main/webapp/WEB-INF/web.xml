@@ -41,7 +41,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>WxMpServlet</servlet-name>
-		<url-pattern>WxMpServlet</url-pattern>
+		<url-pattern>/WxMpServlet</url-pattern>
 	</servlet-mapping>
 
 
