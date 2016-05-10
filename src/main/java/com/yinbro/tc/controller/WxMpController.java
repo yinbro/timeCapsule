@@ -1,51 +1,36 @@
-package com.yinbro.tc.wechat;
+package com.yinbro.tc.controller;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import me.chanjar.weixin.common.exception.WxErrorException;
-import me.chanjar.weixin.common.session.WxSessionManager;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import me.chanjar.weixin.common.util.StringUtils;
-import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
-import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.WxMpXmlOutMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutTextMessage;
 
-public class WxMpServlet extends HttpServlet {
+@Controller
+public class WxMpController {
 
-	protected WxMpInMemoryConfigStorage  config;
+	protected WxMpInMemoryConfigStorage config;
 	protected WxMpService wxMpService;
 	protected WxMpMessageRouter wxMpMessageRouter;
-	@Override
-	public void init() throws ServletException {
-		super.init();
-		config.setAppId("wx7c072d7efed2ed25"); // 设置微信公众号的appid
-		config.setSecret("869cb72db6b2096a4a6c3f083a8744b8"); // 设置微信公众号的app corpSecret
-		config.setToken("yinbro"); // 设置微信公众号的token
-		config.setAesKey("djrO0LbBCps5u8QOD13LYUby994BauBSf38v3Zqbmts"); // 设置微信公众号的EncodingAESKey
 
-		wxMpService = new WxMpServiceImpl();
-		wxMpService.setWxMpConfigStorage(config);
-
-	}
-
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	
+	@RequestMapping("/wxMpChek")
+	public void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		init();
 		response.setContentType("text/html;charset=utf-8");
 		response.setStatus(HttpServletResponse.SC_OK);
-
 		String signature = request.getParameter("signature");
 		String nonce = request.getParameter("nonce");
 		String timestamp = request.getParameter("timestamp");
@@ -73,9 +58,17 @@ public class WxMpServlet extends HttpServlet {
 			response.getWriter().write(outMessage.toXml());
 			return;
 		}
-
 		response.getWriter().println("不可识别的加密类型，仅支持明文传输");
 		return;
+	}
+
+	private void init() throws ServletException {
+		config.setAppId("wx7c072d7efed2ed25"); // 设置微信公众号的appid
+		config.setSecret("869cb72db6b2096a4a6c3f083a8744b8"); // 设置微信公众号的app
+		config.setToken("yinbro"); // 设置微信公众号的token
+		config.setAesKey("djrO0LbBCps5u8QOD13LYUby994BauBSf38v3Zqbmts"); // 设置微信公众号的EncodingAESKey
+		wxMpService = new WxMpServiceImpl();
+		wxMpService.setWxMpConfigStorage(config);
 	}
 
 }

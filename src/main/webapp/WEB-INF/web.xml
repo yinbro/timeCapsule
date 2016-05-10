@@ -33,16 +33,6 @@
 	</servlet-mapping>
 
 
-	<!-- WxServlet Bean 配置 -->
-	<!-- ====================================== -->
-	<servlet>
-		<servlet-name>WxMpServlet</servlet-name>
-		<servlet-class>com.yinbro.tc.wechat.WxMpServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>WxMpServlet</servlet-name>
-		<url-pattern>/WxMpServlet</url-pattern>
-	</servlet-mapping>
 
 
 
