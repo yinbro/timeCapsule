@@ -89,33 +89,12 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.2.8.v20150217</version>
 				<configuration>
-					<httpConnector>
-						<port>8081</port>
-					</httpConnector>
-					<stopKey>shutdown</stopKey>
-					<stopPort>9966</stopPort>
-					<scanIntervalSeconds>2</scanIntervalSeconds>
-					<reload>automatic</reload>
-					<dumpOnStart>true</dumpOnStart>
-					<webAppConfig>
-						<defaultsDescriptor>src/main/resources/webdefault.xml</defaultsDescriptor>
-					</webAppConfig>
+					<scanIntervalSeconds>5</scanIntervalSeconds>
 					<webApp>
 						<contextPath>/${project.artifactId}</contextPath>
-						<!-- <resourceBases> <resourceBase>${project.basedir}/src/main/webapp</resourceBase> 
-							<resourceBase>${project.basedir}/commons</resourceBase> </resourceBases> -->
 					</webApp>
-					<requestLog implementation="org.eclipse.jetty.server.NCSARequestLog">
-						<filename>target/access-yyyy_mm_dd.log</filename>
-						<filenameDateFormat>yyyy_MM_dd</filenameDateFormat>
-						<logDateFormat>yyyy-MM-dd HH:mm:ss</logDateFormat>
-						<logTimeZone>GMT+8:00</logTimeZone>
-						<append>true</append>
-						<logServer>true</logServer>
-						<retainDays>120</retainDays>
-						<logCookies>true</logCookies>
-					</requestLog>
 				</configuration>
+
 			</plugin>
 		</plugins>
 	</build>
