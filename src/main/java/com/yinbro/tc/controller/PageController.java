@@ -7,11 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 	
 	
-	@RequestMapping("/capsuleDetail")
+	@RequestMapping("/capsuleDetail.do")
 	public String capsuleDetail() {
-		System.out.println("Controller");
+		System.out.println("Controller2");
 		return "capsule-detail";
 	}
 	
+	
+
+	@RequestMapping("/login.do")
+	public String loginPage() {
+		System.out.println("Controller1");
+		return "redirect:/capsuleDetail.do";
+	}
 
 }
