@@ -98,12 +98,15 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.2.8.v20150217</version>
+				
 				<configuration>
 					<scanIntervalSeconds>5</scanIntervalSeconds>
-					<webApp>
-						<contextPath>/${project.artifactId}</contextPath>
-					</webApp>
+					<webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
+					<contextPath>/${project.artifactId}</contextPath>
 				</configuration>
+
+
+
 
 			</plugin>
 		</plugins>
