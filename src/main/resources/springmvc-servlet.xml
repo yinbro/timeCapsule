@@ -13,7 +13,7 @@
 	<!-- 启用spring mvc 注解 -->
 	<context:annotation-config />
 	<!-- 设置使用注解的类所在的jar包 -->
-	<context:component-scan base-package="controller"></context:component-scan>
+	<context:component-scan base-package="com.yinbro.tc.controller"></context:component-scan>
 
 	<!-- 完成请求和注解POJO的映射 -->
 	<bean
@@ -26,7 +26,8 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
+	<mvc:annotation-driven  />
 	<!-- 静态资源的访问 -->
-	<mvc:resources location="/WEB-INF/jsp/assets" mapping="/*" />
-
+	<mvc:resources location="/assets/" mapping="/assets/**" />
 </beans>
