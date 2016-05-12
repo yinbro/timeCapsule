@@ -9,14 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 
 	@RequestMapping("login")
-	public String loginPage(Model model) {
-		System.out.println("Login Controller");
+	public String loginPage() {
 		return "login";
 	}
 	
+
+	@RequestMapping("registe")
+	public String registePage(Model model) {
+		return "registe";
+	}
+	
+	
+	
 	@RequestMapping("/capsuleDetail")
 	public String capsuleDetail() {
-		System.out.println("capsuleDetail Controller");
 		return "capsule-detail";
 	}
 
