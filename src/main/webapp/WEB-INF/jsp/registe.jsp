@@ -4,14 +4,19 @@
 <html>
 <head lang="en">
 <meta charset="UTF-8">
-<title>登录胶囊系统</title>
+<title>注册资料补全</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
 <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
 <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+
+
+
 <style>
 .header {
 	text-align: center;
@@ -27,6 +32,15 @@
 	font-size: 14px;
 }
 </style>
+
+
+<script type="text/javascript">
+	$(function() {
+		$('ck').bootstrapSwitch();
+		alert("1");
+	});
+</script>
+
 </head>
 <body>
 	<div class="header">
@@ -45,8 +59,8 @@
 		<div class="admin-content-body">
 			<div class="am-cf am-padding am-padding-bottom-0">
 				<div class="am-fl am-cf">
-					<strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal
-						information</small>
+					<strong class="am-text-primary am-text-lg">注册资料补全</strong> / <small>Personal
+						information implement</small>
 				</div>
 			</div>
 
@@ -90,16 +104,23 @@
 						</div>
 
 						<div class="am-form-group">
-							<label for="user-name" class="am-u-sm-3 am-form-label">性别
+							<label for="user-gender" class="am-u-sm-3 am-form-label">性别
 								/ Gender</label>
 							<div class="am-u-sm-9">
-								<input type="text" id="user-name" placeholder="姓名 / Name">
-								<small>敢问阁下贵性？</small>
-							</div>
-							<div class="switch" data-on="danger" data-off="primary">
-								<input type="checkbox" checked />
+								<div class="am-btn-group" data-am-button>
+									<label class="am-btn am-btn-primary  am-btn-xs"> <input
+										type="radio" name="options" id="option1"> 男
+									</label> <label class="am-btn am-btn-danger am-btn-xs"> <input
+										type="radio" name="options" id="option2"> 女
+									</label>
+								</div>
+								<br> <small>敢问阁下贵性？</small>
 							</div>
 						</div>
+
+
+
+
 
 
 						<div class="am-form-group">
@@ -156,5 +177,18 @@
 	<footer class="blog-footer">
 		<p align="center">©2016 Time Capsule by yinbro</p>
 	</footer>
+
+	<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+	<!--[if (gte IE 9)|!(IE)]><!-->
+	<script src="assets/js/jquery.min.js"></script>
+	<!--<![endif]-->
+	<script src="assets/js/amazeui.min.js"></script>
+	<script src="assets/js/app.js"></script>
 </body>
 </html>
+

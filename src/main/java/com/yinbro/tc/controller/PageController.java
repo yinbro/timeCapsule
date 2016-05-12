@@ -19,12 +19,22 @@ public class PageController {
 		return "registe";
 	}
 	
+		
+	@RequestMapping("/newCapsule")
+	public String newCapsule() {
+		return "newCapsule";
+	}
 	
 	
 	@RequestMapping("/capsuleDetail")
 	public String capsuleDetail() {
 		return "capsule-detail";
 	}
-
+	
+	
+	@RequestMapping("/_blank")
+	public String _blank() {
+		return "_blank";
+	}
 
 }
