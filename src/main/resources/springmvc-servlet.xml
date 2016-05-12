@@ -27,6 +27,6 @@
 	</bean>
 	
 	<!-- 静态资源的访问 -->
-	<mvc:resources location="/WEB-INF/views/assets" mapping="/*" />
+	<mvc:resources location="/WEB-INF/jsp/assets" mapping="/*" />
 
 </beans>
