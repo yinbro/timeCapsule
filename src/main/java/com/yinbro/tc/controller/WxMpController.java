@@ -25,8 +25,20 @@ public class WxMpController {
 	protected WxMpMessageRouter wxMpMessageRouter;
 
 	
-	@RequestMapping("/wxMpChek")
-	public void service(HttpServletRequest request, HttpServletResponse response)
+	//微信账号配置信息初始化，暂明文写死
+	private void init() throws ServletException {
+		config = new WxMpInMemoryConfigStorage();
+		config.setAppId("wx7c072d7efed2ed25"); // 设置微信公众号的appid
+		config.setSecret("869cb72db6b2096a4a6c3f083a8744b8"); // 设置微信公众号的app
+		config.setToken("yinbro"); // 设置微信公众号的token
+		config.setAesKey("djrO0LbBCps5u8QOD13LYUby994BauBSf38v3Zqbmts"); // 设置微信公众号的EncodingAESKey
+		wxMpService = new WxMpServiceImpl();
+		wxMpService.setWxMpConfigStorage(config);
+	}
+	
+	//微信公众平台接入认证
+	@RequestMapping("/wxMpCheckIn")
+	public void wxMpCheckIn(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		init();
 		response.setContentType("text/html;charset=utf-8");
@@ -40,14 +52,12 @@ public class WxMpController {
 			response.getWriter().println("非法请求");
 			return;
 		}
-
 		String echostr = request.getParameter("echostr");
 		if (StringUtils.isNotBlank(echostr)) {
 			// 说明是一个仅仅用来验证的请求，回显echostr
 			response.getWriter().println(echostr);
 			return;
 		}
-
 		String encryptType = StringUtils.isBlank(request.getParameter("encrypt_type")) ? "raw"
 				: request.getParameter("encrypt_type");
 
@@ -60,15 +70,6 @@ public class WxMpController {
 		}
 		response.getWriter().println("不可识别的加密类型，仅支持明文传输");
 		return;
-	}
-
-	private void init() throws ServletException {
-		config.setAppId("wx7c072d7efed2ed25"); // 设置微信公众号的appid
-		config.setSecret("869cb72db6b2096a4a6c3f083a8744b8"); // 设置微信公众号的app
-		config.setToken("yinbro"); // 设置微信公众号的token
-		config.setAesKey("djrO0LbBCps5u8QOD13LYUby994BauBSf38v3Zqbmts"); // 设置微信公众号的EncodingAESKey
-		wxMpService = new WxMpServiceImpl();
-		wxMpService.setWxMpConfigStorage(config);
 	}
 
 }

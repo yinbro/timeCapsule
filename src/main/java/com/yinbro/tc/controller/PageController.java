@@ -7,6 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 	
 	
+
+	@RequestMapping("/login")
+	public String loginPage() {
+		System.out.println("Login Controller");
+		return "login";
+	}
+	
+	
 	@RequestMapping("/capsuleDetail.do")
 	public String capsuleDetail() {
 		System.out.println("Controller2");
@@ -15,10 +23,5 @@ public class PageController {
 	
 	
 
-	@RequestMapping("/login.do")
-	public String loginPage() {
-		System.out.println("Controller1");
-		return "redirect:/capsuleDetail.do";
-	}
 
 }

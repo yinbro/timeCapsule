@@ -6,13 +6,9 @@
 	<display-name>Time Capsule Application</display-name>
 
 	<welcome-file-list>
-		<welcome-file>/login.do</welcome-file>
+		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
 
-	<error-page>
-		<error-code>404</error-code>
-		<location>/views/404.html</location>
-	</error-page>
 
 
 	<!-- Spring MVC配置 -->
@@ -22,14 +18,14 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring-servlet.xml</param-value>
+			<param-value>classpath:springmvc-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 
