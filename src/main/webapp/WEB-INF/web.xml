@@ -29,21 +29,12 @@
 	</servlet-mapping>
 
 
-
-
-
 	<!-- Spring配置 -->
-	<!-- ====================================== -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
-
-	<!-- 指定Spring Bean的配置文件所在目录。默认配置在WEB-INF目录下 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-
-
 </web-app>
