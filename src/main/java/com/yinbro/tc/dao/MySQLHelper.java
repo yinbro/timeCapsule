@@ -2,7 +2,6 @@ package com.yinbro.tc.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
@@ -32,7 +31,7 @@ public class MySQLHelper {
 	// 关闭Connection对象
 	public void closeConnection() {
 		try {
-			this.conn.close();
+			MySQLHelper.conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
