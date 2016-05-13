@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import me.chanjar.weixin.common.util.StringUtils;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
@@ -23,24 +24,31 @@ public class WxMpController {
 	protected WxMpInMemoryConfigStorage config;
 	protected WxMpService wxMpService;
 	protected WxMpMessageRouter wxMpMessageRouter;
+	protected WxMpMessageRouter messageRouter;
 
-	
-	//微信账号配置信息初始化，暂明文写死
+	// 微信账号配置信息初始化，暂明文写死
 	private void init() throws ServletException {
-		config = new WxMpInMemoryConfigStorage();
+		if (config == null) {
+			config = new WxMpInMemoryConfigStorage();
+		}
 		config.setAppId("wx7c072d7efed2ed25"); // 设置微信公众号的appid
 		config.setSecret("869cb72db6b2096a4a6c3f083a8744b8"); // 设置微信公众号的app
 		config.setToken("yinbro"); // 设置微信公众号的token
 		config.setAesKey("djrO0LbBCps5u8QOD13LYUby994BauBSf38v3Zqbmts"); // 设置微信公众号的EncodingAESKey
-		wxMpService = new WxMpServiceImpl();
+		if (wxMpService == null) {
+			wxMpService = new WxMpServiceImpl();
+		}
 		wxMpService.setWxMpConfigStorage(config);
+
 	}
-	
-	//微信公众平台接入认证
-	@RequestMapping("/wxMpCheckIn")
-	public void wxMpCheckIn(HttpServletRequest request, HttpServletResponse response)
+
+	// GET请求用于认证服务
+	@RequestMapping(value = "/wxService", method = RequestMethod.GET)
+	public void wxCheckIn(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// 初始化微信配置
 		init();
+		// 微信认证接入
 		response.setContentType("text/html;charset=utf-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 		String signature = request.getParameter("signature");
@@ -68,8 +76,23 @@ public class WxMpController {
 			response.getWriter().write(outMessage.toXml());
 			return;
 		}
-		response.getWriter().println("不可识别的加密类型，仅支持明文传输");
 		return;
+	}
+
+	// GET请求用于认证服务
+	@RequestMapping(value = "/wxService", method = RequestMethod.POST)
+	public void wxService(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		init();
+		// 只考虑明文传输的消息
+		WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(request.getInputStream());
+		System.out.println("收到新的微信消息");
+		System.out.println(inMessage.toString());
+		
+//		WxMpXmlOutMessage outMessage = wxMpMessageRouter.route(inMessage);
+//		response.getWriter().write(outMessage.toXml());
+		return;
+
 	}
 
 }

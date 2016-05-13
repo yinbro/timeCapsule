@@ -6,7 +6,7 @@
 	<display-name>Time Capsule Application</display-name>
 
 	<welcome-file-list>
-		<welcome-file>/index.jsp</welcome-file>
+		<welcome-file>index</welcome-file>
 	</welcome-file-list>
 	
 	<error-page>
@@ -26,6 +26,8 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	
 
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>

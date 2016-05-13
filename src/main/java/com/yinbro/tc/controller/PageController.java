@@ -12,7 +12,10 @@ public class PageController {
 	public String loginPage() {
 		return "login";
 	}
-	
+	@RequestMapping("index")
+	public String indexPage() {
+		return "index";
+	}
 
 	@RequestMapping("registe")
 	public String registePage(Model model) {
@@ -21,19 +24,19 @@ public class PageController {
 	
 		
 	@RequestMapping("/newCapsule")
-	public String newCapsule() {
+	public String newCapsulePage() {
 		return "newCapsule";
 	}
 	
 	
 	@RequestMapping("/capsuleDetail")
-	public String capsuleDetail() {
+	public String capsuleDetailPage() {
 		return "capsule-detail";
 	}
 	
 	
 	@RequestMapping("/_blank")
-	public String _blank() {
+	public String _blankPage() {
 		return "_blank";
 	}
 
