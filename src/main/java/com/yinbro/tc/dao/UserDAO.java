@@ -95,5 +95,32 @@ public class UserDAO {
 		return false;
 
 	}
+	
+	
+
+
+	public UserBean findUserByWxID(String wxopenid) throws SQLException {
+		String sql = "SELECT * FROM tb_user WHERE uwxopenid = '" + wxopenid + "'";
+//		System.out.println(sql);
+
+		Statement stmt = MySQLHelper.getConnection().createStatement();
+		ResultSet resultSet = stmt.executeQuery(sql);
+		//光标切换到最后一个
+		resultSet.last();
+		if (resultSet.getRow() != 1)
+			return null;
+		
+		UserBean user = new UserBean();
+		user.setId(resultSet.getInt(1));
+		user.setName(resultSet.getString(2));
+		user.setGender(resultSet.getInt(3));
+		//4 是用户密码，在此不获取
+		user.setShowMsg(resultSet.getString(5));
+		user.setTele(resultSet.getString(6));
+		user.setWxopenid(resultSet.getString(7));
+		user.setEmail(resultSet.getString(8));
+		user.setWxname(resultSet.getString(9));
+		return user;
+	}
 
 }

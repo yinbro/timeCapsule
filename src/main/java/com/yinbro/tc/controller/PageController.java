@@ -17,9 +17,9 @@ public class PageController {
 		return "index";
 	}
 
-	@RequestMapping("registe")
-	public String registePage(Model model) {
-		return "registe";
+	@RequestMapping("register")
+	public String registerPage(Model model) {
+		return "register";
 	}
 	
 		

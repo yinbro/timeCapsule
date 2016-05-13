@@ -1,6 +1,7 @@
 package com.yinbro.tc.controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yinbro.tc.handler.TextHandler;
+import com.yinbro.tc.handler.UserRegisterHandler;
+
+import me.chanjar.weixin.common.api.WxConsts;
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.StringUtils;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
+import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.WxMpServiceImpl;
@@ -79,20 +87,29 @@ public class WxMpController {
 		return;
 	}
 
-	// GET请求用于认证服务
+	// POST请求用于认证服务
 	@RequestMapping(value = "/wxService", method = RequestMethod.POST)
 	public void wxService(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, WxErrorException {
 		init();
+
 		// 只考虑明文传输的消息
 		WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(request.getInputStream());
-		System.out.println("收到新的微信消息");
-		System.out.println(inMessage.toString());
-		
-//		WxMpXmlOutMessage outMessage = wxMpMessageRouter.route(inMessage);
-//		response.getWriter().write(outMessage.toXml());
-		return;
 
+		WxMpXmlOutMessage outMessage;
+		WxMpMessageRouter router = new WxMpMessageRouter(wxMpService);
+
+		/**
+		 * 需要自定义修改的过滤部分 1.处理关注事件，UserRegisterHandler
+		 */
+		router.rule().async(false).event(WxConsts.EVT_SUBSCRIBE).handler(new UserRegisterHandler()).next().rule()
+				.async(false).content("注册").handler(new UserRegisterHandler()).end().rule().async(false)
+				.handler(new TextHandler()).end();
+		/** 需要自定义修改的过滤部分 */
+
+		outMessage = router.route(inMessage);
+		response.getWriter().write(outMessage.toXml());
+		return;
 	}
 
 }
