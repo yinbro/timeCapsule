@@ -6,13 +6,8 @@
 	<display-name>Time Capsule Application</display-name>
 
 	<welcome-file-list>
-		<welcome-file>index</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	
-	<error-page>
-		<error-code>404</error-code>
-		<location>/404.html</location>
-	</error-page>
 
 
 	<!-- Spring MVC配置 -->
@@ -26,9 +21,6 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
-	
-
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
@@ -43,4 +35,23 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
+
+
+
+
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+
 </web-app>

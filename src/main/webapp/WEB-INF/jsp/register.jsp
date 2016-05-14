@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
 <meta charset="UTF-8">
 <title>注册资料补全</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no" >
 <meta name="format-detection" content="telephone=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -43,16 +44,6 @@
 
 </head>
 <body>
-	<div class="header">
-		<div class="am-g">
-			<h1>时间胶囊</h1>
-			<p>
-				Time Capsule<br />把最好的，留给未来的自己
-			</p>
-		</div>
-		<hr />
-	</div>
-
 
 	<!-- content start -->
 	<div class="admin-content">
@@ -63,55 +54,52 @@
 						information implement</small>
 				</div>
 			</div>
-
 			<hr />
-
 			<div class="am-g">
-				<div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
-					<div class="am-panel am-panel-default">
-						<div class="am-panel-bd">
-							<div class="am-g">
-								<div class="am-u-md-4">
-									<img class="am-img-circle am-img-thumbnail"
-										src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
-										alt="" />
-								</div>
-								<div class="am-u-md-8">
-									<p>选择一张照片作为头像</p>
-									<form class="am-form">
-										<div class="am-form-group">
-											<input type="file" id="user-pic">
-											<p class="am-form-help">请选择要上传的照片...</p>
-											<button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
 				<div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-					<form class="am-form am-form-horizontal">
+					<form class="am-form am-form-horizontal" action="register"
+						method="post">
 						<div class="am-form-group">
-							<label for="user-name" class="am-u-sm-3 am-form-label">昵称
-								/ Nickname</label>
+							<label for="user-name" class="am-u-sm-3 am-form-label">微信ID/
+								WeChat</label>
 							<div class="am-u-sm-9">
-								<input type="text" id="user-name" placeholder="姓名 / Name">
-								<small>向未来的你做个自我介绍，先取个好名字吧</small>
+								<input  type="hidden" name="wxopenid"
+									value="<c:if
+										test="${not empty param.wxopenid}">${param.wxopenid}</c:if>">
+								<br> <small><c:if
+										test="${not empty param.wxopenid}">${param.wxopenid}</c:if></small>
+
 							</div>
 						</div>
 
 						<div class="am-form-group">
-							<label for="user-gender" class="am-u-sm-3 am-form-label">性别
-								/ Gender</label>
+							<label for="user-name" class="am-u-sm-3 am-form-label">昵称/
+								NicName</label>
+							<div class="am-u-sm-9">
+								<input type="text" name="name" placeholder="姓名 /Name"> <small>向未来的你做个自我介绍，先取个好名字吧</small>
+							</div>
+						</div>
+
+
+
+						<div class="am-form-group">
+							<label for="user-name" class="am-u-sm-3 am-form-label">密码/
+								Pasword</label>
+							<div class="am-u-sm-9">
+								<input type="password" name="password"> <small>只输一遍，要细心哦~</small>
+							</div>
+						</div>
+
+						<div class="am-form-group">
+							<label for="user-gender" class="am-u-sm-3 am-form-label">性别/
+								Gender</label>
 							<div class="am-u-sm-9">
 								<div class="am-btn-group" data-am-button>
 									<label class="am-btn am-btn-primary  am-btn-xs"> <input
-										type="radio" name="options" id="option1"> 男
+										type="radio" name="gender" value="1" checked="checked">
+										男
 									</label> <label class="am-btn am-btn-danger am-btn-xs"> <input
-										type="radio" name="options" id="option2"> 女
+										type="radio" name="gender" value="0"> 女
 									</label>
 								</div>
 								<br> <small>敢问阁下贵性？</small>
@@ -120,48 +108,35 @@
 
 
 
-
-
-
 						<div class="am-form-group">
-							<label for="user-email" class="am-u-sm-3 am-form-label">电子邮件
-								/ Email</label>
+							<label for="user-email" class="am-u-sm-3 am-form-label">电子邮件/
+								Email</label>
 							<div class="am-u-sm-9">
-								<input type="email" id="user-email"
-									placeholder="输入你的电子邮件 / Email"> <small>最好是一个伴随一生的邮箱哦...</small>
+								<input type="email" name="email" placeholder="输入你的电子邮件 / Email">
+								<small>最好是一个伴随一生的邮箱哦...</small>
 							</div>
 						</div>
 
 						<div class="am-form-group">
-							<label for="user-phone" class="am-u-sm-3 am-form-label">电话
-								/ Telephone</label>
+							<label for="user-phone" class="am-u-sm-3 am-form-label">电话/
+								Tele</label>
 							<div class="am-u-sm-9">
-								<input type="email" id="user-phone"
-									placeholder="输入你的电话号码 / Telephone"><small>放心，我不会告诉卖保险的...</small>
+								<input type="tel" name="tele" placeholder="输入你的电话号码 / Telephone"><small>放心，我不会告诉卖保险的...</small>
 							</div>
 						</div>
 
 						<div class="am-form-group">
-							<label for="user-weibo" class="am-u-sm-3 am-form-label">微博
-								/ Twitter</label>
+							<label for="user-intro" class="am-u-sm-3 am-form-label">简介/
+								Intro</label>
 							<div class="am-u-sm-9">
-								<input type="email" id="user-weibo"
-									placeholder="输入你的微博 / Twitter">
-							</div>
-						</div>
-
-						<div class="am-form-group">
-							<label for="user-intro" class="am-u-sm-3 am-form-label">简介
-								/ Intro</label>
-							<div class="am-u-sm-9">
-								<textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
+								<textarea name="showMsg" class="" rows="5" placeholder="输入个人简介"></textarea>
 								<small>250字以内写出你的一生...</small>
 							</div>
 						</div>
 
 						<div class="am-form-group">
 							<div class="am-u-sm-9 am-u-sm-push-3">
-								<button type="button" class="am-btn am-btn-primary">保存修改</button>
+								<button type="submit" class="am-btn am-btn-primary">保存修改</button>
 							</div>
 						</div>
 					</form>
@@ -171,7 +146,6 @@
 
 	</div>
 	<!-- content end -->
-
 
 
 	<footer class="blog-footer">

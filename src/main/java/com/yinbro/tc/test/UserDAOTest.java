@@ -24,21 +24,15 @@ public class UserDAOTest {
 		user.setWxopenid("01000001");
 		
 		UserDAO userDAO = new UserDAO();
-		try {
-			System.out.println("注册是否成功：" + userDAO.signUp(user));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("注册是否成功：" + userDAO.signUp(user));
 	}
 	
 	@Test
-	public void loginTest() throws SQLException {
+	public void loginTest() {
 		System.out.println("登录测试");
 		String strUserName = "yinbro";
 		String strPassword = "yinbro";
 		UserDAO dao = new UserDAO();
-	
 		UserBean user  = dao.login(strUserName, strPassword);
 		
 		if (user == null) {

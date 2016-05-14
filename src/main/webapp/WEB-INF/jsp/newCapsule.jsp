@@ -6,136 +6,39 @@
 <meta charset="UTF-8">
 <title>新建颊囊</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 user-scalable=no">
 <meta name="format-detection" content="telephone=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
 <link rel="stylesheet" href="assets/css/amazeui.min.css" />
 
-
-<!-- 编辑器相关 -->
-<script type="text/javascript" charset="utf-8"
-	src="utf8-jsp/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="utf8-jsp/ueditor.all.min.js">
-	
-</script>
-<script type="text/javascript" charset="utf-8"
-	src="utf8-jsp/lang/zh-cn/zh-cn.js"></script>
-
-
+<script src="assets/artEditor/artEditor.min.js"></script>
 <script type="text/javascript">
-	//实例化编辑器
-	//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-	var ue = UE.getEditor('editor');
-
-	function isFocus(e) {
-		alert(UE.getEditor('editor').isFocus());
-		UE.dom.domUtils.preventDefault(e)
-	}
-	function setblur(e) {
-		UE.getEditor('editor').blur();
-		UE.dom.domUtils.preventDefault(e)
-	}
-	function insertHtml() {
-		var value = prompt('插入html代码', '');
-		UE.getEditor('editor').execCommand('insertHtml', value)
-	}
-	function createEditor() {
-		enableBtn();
-		UE.getEditor('editor');
-	}
-	function getAllHtml() {
-		alert(UE.getEditor('editor').getAllHtml())
-	}
-	function getContent() {
-		var arr = [];
-		arr.push("使用editor.getContent()方法可以获得编辑器的内容");
-		arr.push("内容为：");
-		arr.push(UE.getEditor('editor').getContent());
-		alert(arr.join("\n"));
-	}
-	function getPlainTxt() {
-		var arr = [];
-		arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
-		arr.push("内容为：");
-		arr.push(UE.getEditor('editor').getPlainTxt());
-		alert(arr.join('\n'))
-	}
-	function setContent(isAppendTo) {
-		var arr = [];
-		arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
-		UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
-		alert(arr.join("\n"));
-	}
-	function setDisabled() {
-		UE.getEditor('editor').setDisabled('fullscreen');
-		disableBtn("enable");
-	}
-
-	function setEnabled() {
-		UE.getEditor('editor').setEnabled();
-		enableBtn();
-	}
-
-	function getText() {
-		//当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
-		var range = UE.getEditor('editor').selection.getRange();
-		range.select();
-		var txt = UE.getEditor('editor').selection.getText();
-		alert(txt)
-	}
-
-	function getContentTxt() {
-		var arr = [];
-		arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
-		arr.push("编辑器的纯文本内容为：");
-		arr.push(UE.getEditor('editor').getContentTxt());
-		alert(arr.join("\n"));
-	}
-	function hasContent() {
-		var arr = [];
-		arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
-		arr.push("判断结果为：");
-		arr.push(UE.getEditor('editor').hasContents());
-		alert(arr.join("\n"));
-	}
-	function setFocus() {
-		UE.getEditor('editor').focus();
-	}
-	function deleteEditor() {
-		disableBtn();
-		UE.getEditor('editor').destroy();
-	}
-	function disableBtn(str) {
-		var div = document.getElementById('btns');
-		var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
-		for (var i = 0, btn; btn = btns[i++];) {
-			if (btn.id == str) {
-				UE.dom.domUtils.removeAttributes(btn, [ "disabled" ]);
-			} else {
-				btn.setAttribute("disabled", "true");
+	$(function() {
+		$('#content').artEditor({
+			imgTar : '#imageUpload',
+			limitSize : 5, // 兆
+			showServer : false,
+			uploadUrl : '',
+			data : {},
+			uploadField : 'image',
+			placeholader : '<p>请输入文章正文内容</p>',
+			validHtml : [ "<br/>" ],
+			formInputId : 'target',
+			uploadSuccess : function(res) {
+				// return img url
+				return res.path;
+			},
+			uploadError : function(res) {
+				// something error
+				console.log(res);
 			}
-		}
-	}
-	function enableBtn() {
-		var div = document.getElementById('btns');
-		var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
-		for (var i = 0, btn; btn = btns[i++];) {
-			UE.dom.domUtils.removeAttributes(btn, [ "disabled" ]);
-		}
-	}
-
-	function getLocalData() {
-		alert(UE.getEditor('editor').execCommand("getlocaldata"));
-	}
-
-	function clearLocalData() {
-		UE.getEditor('editor').execCommand("clearlocaldata");
-		alert("已清空草稿箱")
-	}
+		});
+	});
 </script>
+
 
 
 
@@ -163,16 +66,6 @@ div {
 </style>
 </head>
 <body>
-	<div class="header">
-		<div class="am-g">
-			<h1>时间胶囊</h1>
-			<p>
-				Time Capsule<br />把最好的，留给未来的自己
-			</p>
-		</div>
-		<hr />
-	</div>
-
 
 	<!-- content start -->
 	<div class="admin-content">
@@ -194,16 +87,12 @@ div {
 
 				<div class="am-tabs-bd">
 					<div class="am-tab-panel am-fade am-in am-active" id="tab1">
-
-
-
 						<div class="am-g am-margin-top">
 							<div class="am-u-sm-4 am-u-md-2 am-text-right">胶囊主题</div>
 							<div class="am-u-sm-8 am-u-md-10">
 								<input type="text">
 							</div>
 						</div>
-
 						<div class="am-g am-margin-top">
 							<div class="am-u-sm-4 am-u-md-2 am-text-right">通知邮箱</div>
 							<div class="am-u-sm-8 am-u-md-10">
@@ -226,9 +115,9 @@ div {
 							<div class="am-u-sm-8 am-u-md-10">
 								<div class="am-btn-group" data-am-button>
 									<label class="am-btn am-btn-default am-btn-xs"> <input
-										type="radio" name="options" id="option1"> 是
+										type="radio" name="isOneOff" value="1"> 是
 									</label> <label class="am-btn am-btn-default am-btn-xs"> <input
-										type="radio" name="options" id="option2"> 否
+										type="radio" name="isOneOff" value="0"> 否
 									</label>
 								</div>
 							</div>
@@ -247,7 +136,6 @@ div {
 						</div>
 
 
-						***后期添加时间选择器***
 						<div class="am-g am-margin-top">
 							<div class="am-u-sm-4 am-u-md-2 am-text-right">开启时间</div>
 							<div class="am-u-sm-8 am-u-md-10">
@@ -289,9 +177,7 @@ div {
 								<div class="am-u-sm-12 am-u-md-10">
 									<!-- ----------------------- -->
 
-
-									<p>此处用来添加富媒体编辑器</p>
-
+									Content
 
 									<!-- ----------------------- -->
 								</div>

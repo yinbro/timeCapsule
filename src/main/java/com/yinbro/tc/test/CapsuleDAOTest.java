@@ -31,12 +31,7 @@ public class CapsuleDAOTest {
 		capsuleBean.setSnap(true);
 
 		CapsuleDAO capsuleDAO = new CapsuleDAO();
-		try {
-			System.out.println("创建是否成功：" + capsuleDAO.createCapsule(capsuleBean));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("创建是否成功：" + capsuleDAO.createCapsule(capsuleBean));
 	}
 
 	

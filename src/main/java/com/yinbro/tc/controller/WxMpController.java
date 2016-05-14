@@ -1,8 +1,6 @@
 package com.yinbro.tc.controller;
 
 import java.io.IOException;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +14,8 @@ import com.yinbro.tc.handler.UserRegisterHandler;
 
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.exception.WxErrorException;
-import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.StringUtils;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
-import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.WxMpServiceImpl;
@@ -102,7 +98,7 @@ public class WxMpController {
 		/**
 		 * 需要自定义修改的过滤部分 1.处理关注事件，UserRegisterHandler
 		 */
-		router.rule().async(false).event(WxConsts.EVT_SUBSCRIBE).handler(new UserRegisterHandler()).next().rule()
+		router.rule().async(false).event(WxConsts.EVT_SUBSCRIBE).handler(new UserRegisterHandler()).end().rule()
 				.async(false).content("注册").handler(new UserRegisterHandler()).end().rule().async(false)
 				.handler(new TextHandler()).end();
 		/** 需要自定义修改的过滤部分 */
