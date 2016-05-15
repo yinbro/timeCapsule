@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yinbro.tc.dao.UserDAO;
+import com.yinbro.tc.pojo.CapsuleBean;
 import com.yinbro.tc.pojo.UserBean;
 
 @Controller
@@ -27,5 +28,6 @@ public class UserController {
 		
 		return "<h1 align='center'>注册失败，请重试！</h1>";
 	}
-
+	
+	
 }

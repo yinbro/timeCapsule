@@ -13,32 +13,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
 <link rel="stylesheet" href="assets/css/amazeui.min.css" />
-
-<script src="assets/artEditor/artEditor.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('#content').artEditor({
-			imgTar : '#imageUpload',
-			limitSize : 5, // 兆
-			showServer : false,
-			uploadUrl : '',
-			data : {},
-			uploadField : 'image',
-			placeholader : '<p>请输入文章正文内容</p>',
-			validHtml : [ "<br/>" ],
-			formInputId : 'target',
-			uploadSuccess : function(res) {
-				// return img url
-				return res.path;
-			},
-			uploadError : function(res) {
-				// something error
-				console.log(res);
-			}
-		});
-	});
-</script>
-
+<script src="assets/js/jquery.min.js"></script>
 
 
 
@@ -78,129 +53,67 @@ div {
 			</div>
 
 			<hr>
-
-			<div class="am-tabs am-margin" data-am-tabs>
-				<ul class="am-tabs-nav am-nav am-nav-tabs">
-					<li class="am-active"><a href="#tab1">基本信息</a></li>
-					<li><a href="#tab2">胶囊内容</a></li>
-				</ul>
-
+			<form  action="newCapsulePost" method="post">
 				<div class="am-tabs-bd">
-					<div class="am-tab-panel am-fade am-in am-active" id="tab1">
-						<div class="am-g am-margin-top">
-							<div class="am-u-sm-4 am-u-md-2 am-text-right">胶囊主题</div>
-							<div class="am-u-sm-8 am-u-md-10">
-								<input type="text">
-							</div>
+					<div class="am-g am-margin-top">
+						<div class="am-u-sm-4 am-u-md-2 am-text-right">胶囊主题</div>
+						<div class="am-u-sm-8 am-u-md-10">
+							<input type="text" name="subject" required="required">
 						</div>
-						<div class="am-g am-margin-top">
-							<div class="am-u-sm-4 am-u-md-2 am-text-right">通知邮箱</div>
-							<div class="am-u-sm-8 am-u-md-10">
-								<input type="text" placeholder="默认使用注册预留邮箱">
-							</div>
-						</div>
-
-
-						<div class="am-g am-margin-top">
-							<div class="am-u-sm-4 am-u-md-2 am-text-right">联系手机</div>
-							<div class="am-u-sm-8 am-u-md-10">
-								<input type="text" placeholder="默认使用注册预留手机号">
-							</div>
-						</div>
-
-
-
-						<div class="am-g am-margin-top">
-							<div class="am-u-sm-4 am-u-md-2 am-text-right">阅后即焚</div>
-							<div class="am-u-sm-8 am-u-md-10">
-								<div class="am-btn-group" data-am-button>
-									<label class="am-btn am-btn-default am-btn-xs"> <input
-										type="radio" name="isOneOff" value="1"> 是
-									</label> <label class="am-btn am-btn-default am-btn-xs"> <input
-										type="radio" name="isOneOff" value="0"> 否
-									</label>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="am-g am-margin-top">
-							<div class="am-u-sm-4 am-u-md-2 am-text-right">安全策略</div>
-							<div class="am-u-sm-8 am-u-md-10">
-								<select data-am-selected="{btnSize: 'sm'}">
-									<option value="option1">仅需凭证开启</option>
-									<option value="option2">凭证+微信内开启</option>
-									<option value="option3">指定微信用户开启</option>
-								</select>
-							</div>
-						</div>
-
-
-						<div class="am-g am-margin-top">
-							<div class="am-u-sm-4 am-u-md-2 am-text-right">开启时间</div>
-							<div class="am-u-sm-8 am-u-md-10">
-								<form action="" class="am-form am-form-inline">
-									<div class="am-form-group am-form-icon">
-										<i class="am-icon-calendar"></i> <input type="text"
-											class="am-form-field am-input-sm" placeholder="时间">
-									</div>
-								</form>
-							</div>
-						</div>
-
-
-						<div class="am-g am-margin-top">
-							<div class="am-u-sm-4 am-u-md-2 am-text-right">封条提醒</div>
-							<div class="am-u-sm-8 am-u-md-4 am-u-end">
-								<textarea rows="4" placeholder="未到开启时间的开启提醒"></textarea>
-							</div>
-						</div>
-
-
 					</div>
 
-					<div class="am-tab-panel am-fade" id="tab2">
-						<form class="am-form">
-							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">胶囊标题</div>
-								<div class="am-u-sm-8 am-u-md-4">
-									<input type="text" class="am-input-sm">
-								</div>
-								<div class="am-hide-sm-only am-u-md-6">*必填</div>
+					<div class="am-g am-margin-top">
+						<div class="am-u-sm-4 am-u-md-2 am-text-right">阅后即焚</div>
+						<div class="am-u-sm-8 am-u-md-10">
+							<div class="am-btn-group" data-am-button>
+								<label class="am-btn am-btn-default am-btn-xs"> <input
+									type="radio" name="isSnap" value="true"> 是
+								</label> <label class="am-btn am-btn-default am-btn-xs"> <input
+									type="radio" checked="checked" name="isSnap" value="false">
+									否
+								</label>
 							</div>
-
-
-
-							<div class="am-g am-margin-top-sm">
-								<div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
-									胶囊内容</div>
-								<div class="am-u-sm-12 am-u-md-10">
-									<!-- ----------------------- -->
-
-									Content
-
-									<!-- ----------------------- -->
-								</div>
-							</div>
-
-						</form>
+						</div>
 					</div>
 
+					<div class="am-g am-margin-top">
+						<div class="am-u-sm-4 am-u-md-2 am-text-right">安全策略</div>
+						<div class="am-u-sm-8 am-u-md-10">
+							<select data-am-selected="{btnSize: 'sm'}" name="safeStrategy">
+								<option value="1" selected="selected">仅需凭证模式</option>
+								<option value="2">凭证+微信认证模式</option>
+								<option value="3">绝对加密模式</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="am-g am-margin-top">
+						<div class="am-u-sm-4 am-u-md-2 am-text-right">开启日期</div>
+						<div class="am-u-sm-8 am-u-md-10">
+							<div class="am-form-group am-form-icon">
+								<i class="am-icon-calendar"></i> <input type="text" name="preOpenTime"
+									class="am-form-field" placeholder="请选择胶囊开启日期" data-am-datepicker
+									readonly required />
+							</div>
+						</div>
+					</div>
+					<div class="am-g am-margin-top">
+						<div class="am-u-sm-4 am-u-md-2 am-text-right">封条信息</div>
+						<div class="am-u-sm-8 am-u-md-4 am-u-end">
+							<textarea name="preShowText" rows="4" placeholder="未到开启时间的开启提醒"></textarea>
+						</div>
+					</div>
 				</div>
-			</div>
-			<br> <br> <br> <br> <br> <br>
-			<div class="am-margin">
-				<button type="button" class="am-btn am-btn-primary am-btn-xs">埋藏胶囊</button>
-				<button type="button" class="am-btn am-btn-primary am-btn-xs">暂时取消</button>
-			</div>
+				<br>  <hr> <input
+					type="submit" class="am-g am-margin-top am-btn am-btn-primary am-btn-xs" value="下一步">
+			</form>
 			<br> <br> <br>
 
 
 		</div>
 
 	</div>
-
-
 
 
 
@@ -218,7 +131,7 @@ div {
 <![endif]-->
 
 	<!--[if (gte IE 9)|!(IE)]><!-->
-	<script src="assets/js/jquery.min.js"></script>
+
 	<!--<![endif]-->
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/app.js"></script>

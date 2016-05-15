@@ -2,6 +2,7 @@ package com.yinbro.tc.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 public class MD5Util {
 	// 全局数组
@@ -52,8 +53,13 @@ public class MD5Util {
 		return resultString;
 	}
 
-//	public static void main(String[] args) {
-//		System.out.println(MD5Util.getMD5Code("000000"));
-//	}
+	
+	// 生成以时间为种子的MD5 KEY
+	public static String getSecretKeyByDate(Date date) {
+		long l = date.getTime();
+		String strTime = Long.toString(l);
+		String key = MD5Util.getMD5Code(strTime);
+		return key;
+	}
 
 }

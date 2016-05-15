@@ -20,7 +20,7 @@ public class PageController {
 	}
 	
 		
-	@RequestMapping("/newCapsule")
+	@RequestMapping(value="/newCapsule",method=RequestMethod.GET)
 	public String newCapsulePage() {
 		return "newCapsule";
 	}
