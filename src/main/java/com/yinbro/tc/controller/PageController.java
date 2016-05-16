@@ -9,29 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping()
 public class PageController {
 
-	@RequestMapping("/login")
-	public String loginPage() {
-		return "login";
-	}
 
-	@RequestMapping(value="/register",method=RequestMethod.GET)
-	public String registerPage(Model model) {
-		return "register";
-	}
-	
-		
-	@RequestMapping(value="/newCapsule",method=RequestMethod.GET)
-	public String newCapsulePage() {
-		return "newCapsule";
-	}
-	
-	
-	@RequestMapping("/capsuleDetail")
-	public String capsuleDetailPage() {
-		return "capsule-detail";
-	}
-	
-	
 	@RequestMapping("/_blank")
 	public String _blankPage() {
 		return "_blank";

@@ -21,11 +21,11 @@ public class CapsuleDAOTest {
 		long l  = new Date().getTime();
 		String strTime = Long.toString(l);
 		String key = MD5Util.getMD5Code(strTime);
-		capsuleBean.setUserid(10);
+		capsuleBean.setWxopenid("TestWxOpenID");
 		capsuleBean.setKey(key);
-		capsuleBean.setPutTime(new Timestamp(new Date().getTime()));
-		capsuleBean.setPreOpenTime(new Timestamp(new Date().getTime()));
-		capsuleBean.setActOpenTime(new Timestamp(new Date().getTime()));
+		capsuleBean.setPutTime("2014-9-4");
+		capsuleBean.setPreOpenTime("2014-9-4");
+		capsuleBean.setActOpenTime("2014-9-4");
 		capsuleBean.setPreShowText("未到时间，无法打开");
 		capsuleBean.setContent("时间胶囊内容");
 		capsuleBean.setSnap(true);
@@ -41,7 +41,7 @@ public class CapsuleDAOTest {
 		System.out.println("胶囊查询测试");
 		CapsuleBean capsuleBean = new CapsuleBean();
 		CapsuleDAO capsuleDAO = new CapsuleDAO();
-		capsuleBean = capsuleDAO.queryCapsuleByKey("d34ebd8ea83d6d843a7a0b6493b69c32");
+		capsuleBean = capsuleDAO.queryCapsuleByKey("25301c83abe9be9c24eb1eebacc26a3a");
 		System.out.println(capsuleBean);
 		
 	}

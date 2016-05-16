@@ -16,22 +16,23 @@ public class CapsuleDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean createCapsule(CapsuleBean capsule){
+	public boolean createCapsule(CapsuleBean capsule) {
 		MySQLHelper helper = new MySQLHelper();
 		Connection conn = helper.getConnection();
 		PreparedStatement ps = null;
-		String sql = "INSERT INTO tb_capsule (cuserid,ckey,cputTime,cpreOpenTime,cactOpenTime,cpreShowText,ccontent,cisSnap)"
-				+ "VALUES (?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO tb_capsule (cwxopenid,ckey,cputTime,cpreOpenTime,cactOpenTime,cpreShowText,ccontent,cisSnap,cQrImgUrl)"
+				+ "VALUES (?,?,?,?,?,?,?,?,?)";
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, capsule.getUserid());
+			ps.setString(1, capsule.getWxopenid());
 			ps.setString(2, capsule.getKey());
-			ps.setTimestamp(3, capsule.getPutTime());
-			ps.setTimestamp(4, capsule.getPreOpenTime());
-			ps.setTimestamp(5, capsule.getActOpenTime());
+			ps.setString(3, capsule.getPutTime());
+			ps.setString(4, capsule.getPreOpenTime());
+			ps.setString(5, capsule.getActOpenTime());
 			ps.setString(6, capsule.getPreShowText());
 			ps.setString(7, capsule.getContent());
-			ps.setInt(8, capsule.isSnap()?1:0);
+			ps.setInt(8, capsule.isSnap() ? 1 : 0);
+			ps.setString(9, capsule.getQrImgUrl());
 			// 返回false表示execute成功，在此取反
 			return !ps.execute();
 		} catch (SQLException e) {
@@ -54,7 +55,7 @@ public class CapsuleDAO {
 		MySQLHelper helper = new MySQLHelper();
 		Connection conn = helper.getConnection();
 		Statement stmt = MySQLHelper.createStatement(conn);
-		String sql = "SELECT cid,cuserid,ckey,cputTime,cpreOpenTime,cactOpenTime,cpreShowText,ccontent,cisSnap FROM tb_capsule WHERE ckey = '"
+		String sql = "SELECT cid,cwxopenid,ckey,cputTime,cpreOpenTime,cactOpenTime,cpreShowText,ccontent,cisSnap,cQrImgUrl FROM tb_capsule WHERE ckey = '"
 				+ strKey + "'";
 
 		CapsuleBean capsuleBean = null;
@@ -64,23 +65,24 @@ public class CapsuleDAO {
 			rs.last();
 			if (rs.getRow() != 1)
 				return null;
-
 			capsuleBean = new CapsuleBean();
 			capsuleBean.setId(rs.getInt(1));
-			capsuleBean.setUserid(rs.getInt(2));
+			capsuleBean.setWxopenid(rs.getString(2));
 			capsuleBean.setKey(rs.getString(3));
-			capsuleBean.setPutTime(rs.getTimestamp(4));
-			capsuleBean.setPreOpenTime(rs.getTimestamp(5));
-			capsuleBean.setActOpenTime(rs.getTimestamp(6));
+			capsuleBean.setPutTime(rs.getString(4));
+			capsuleBean.setPreOpenTime(rs.getString(5));
+			capsuleBean.setActOpenTime(rs.getString(6));
 			capsuleBean.setPreShowText(rs.getString(7));
 			capsuleBean.setContent(rs.getString(8));
-			//三目运算，为1 即true
-			capsuleBean.setSnap(rs.getInt(9)==1?true:false);
+			capsuleBean.setQrImgUrl(rs.getString(9));
+			// 三目运算，为1 即true
+			capsuleBean.setSnap(rs.getInt(9) == 1 ? true : false);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			MySQLHelper.closeStatement(stmt);
+			MySQLHelper.closeConnection(conn);
 		}
-
 		return capsuleBean;
 	}
 

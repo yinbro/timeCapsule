@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -41,7 +42,8 @@ div {
 </style>
 </head>
 <body>
-
+	<c:set var="wxopenid" scope="session" value="${param.wxopenid }" />
+	
 	<!-- content start -->
 	<div class="admin-content">
 		<div class="admin-content-body">
@@ -53,7 +55,7 @@ div {
 			</div>
 
 			<hr>
-			<form  action="newCapsulePost" method="post">
+			<form action="newCapsule1Post" method="post">
 				<div class="am-tabs-bd">
 					<div class="am-g am-margin-top">
 						<div class="am-u-sm-4 am-u-md-2 am-text-right">胶囊主题</div>
@@ -67,9 +69,9 @@ div {
 						<div class="am-u-sm-8 am-u-md-10">
 							<div class="am-btn-group" data-am-button>
 								<label class="am-btn am-btn-default am-btn-xs"> <input
-									type="radio" name="isSnap" value="true"> 是
+									type="radio" name="isSnap" value="yes"> 是
 								</label> <label class="am-btn am-btn-default am-btn-xs"> <input
-									type="radio" checked="checked" name="isSnap" value="false">
+									type="radio" checked="checked" name="isSnap" value="no">
 									否
 								</label>
 							</div>
@@ -92,9 +94,9 @@ div {
 						<div class="am-u-sm-4 am-u-md-2 am-text-right">开启日期</div>
 						<div class="am-u-sm-8 am-u-md-10">
 							<div class="am-form-group am-form-icon">
-								<i class="am-icon-calendar"></i> <input type="text" name="preOpenTime"
-									class="am-form-field" placeholder="请选择胶囊开启日期" data-am-datepicker
-									readonly required />
+								<i class="am-icon-calendar"></i> <input type="text"
+									name="preOpenTime" class="am-form-field"
+									placeholder="请选择胶囊开启日期" data-am-datepicker readonly required />
 							</div>
 						</div>
 					</div>
@@ -105,8 +107,11 @@ div {
 						</div>
 					</div>
 				</div>
-				<br>  <hr> <input
-					type="submit" class="am-g am-margin-top am-btn am-btn-primary am-btn-xs" value="下一步">
+				<br>
+				<hr>
+				<input type="submit"
+					class="am-g am-margin-top am-btn am-btn-primary am-btn-xs"
+					value="下一步">
 			</form>
 			<br> <br> <br>
 

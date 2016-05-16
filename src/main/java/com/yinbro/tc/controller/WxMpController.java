@@ -25,13 +25,13 @@ import me.chanjar.weixin.mp.bean.WxMpXmlOutMessage;
 @Controller
 public class WxMpController {
 
+	public static WxMpService wxMpService = null;
 	protected WxMpInMemoryConfigStorage config;
-	protected WxMpService wxMpService;
 	protected WxMpMessageRouter wxMpMessageRouter;
 	protected WxMpMessageRouter messageRouter;
 
 	// 微信账号配置信息初始化，暂明文写死
-	private void init() throws ServletException {
+	public WxMpController() {
 		if (config == null) {
 			config = new WxMpInMemoryConfigStorage();
 		}
@@ -43,15 +43,12 @@ public class WxMpController {
 			wxMpService = new WxMpServiceImpl();
 		}
 		wxMpService.setWxMpConfigStorage(config);
-
 	}
 
 	// GET请求用于认证服务
 	@RequestMapping(value = "/wxService", method = RequestMethod.GET)
 	public void wxCheckIn(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 初始化微信配置
-		init();
 		// 微信认证接入
 		response.setContentType("text/html;charset=utf-8");
 		response.setStatus(HttpServletResponse.SC_OK);
@@ -83,15 +80,13 @@ public class WxMpController {
 		return;
 	}
 
-	// POST请求用于认证服务
+	// POST请求处理业务请求
 	@RequestMapping(value = "/wxService", method = RequestMethod.POST)
 	public void wxService(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, WxErrorException {
-		init();
 
 		// 只考虑明文传输的消息
 		WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(request.getInputStream());
-
 		WxMpXmlOutMessage outMessage;
 		WxMpMessageRouter router = new WxMpMessageRouter(wxMpService);
 
@@ -100,7 +95,7 @@ public class WxMpController {
 		 */
 		router.rule().async(false).event(WxConsts.EVT_SUBSCRIBE).handler(new UserRegisterHandler()).end().rule()
 				.async(false).content("注册").handler(new UserRegisterHandler()).end().rule().async(false)
-				.handler(new TextHandler()).end();
+				.handler(new UserRegisterHandler()).end();
 		/** 需要自定义修改的过滤部分 */
 
 		outMessage = router.route(inMessage);

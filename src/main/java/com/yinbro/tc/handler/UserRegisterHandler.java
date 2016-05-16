@@ -33,24 +33,18 @@ public class UserRegisterHandler implements WxMpMessageHandler {
 			// TODO 如果该用户已经存在，发送欢迎信息
 			StringBuffer sb = new StringBuffer();
 			sb.append(user.getName()+ "你好！\n");
-			sb.append("    欢迎回家~\n\n");
-			sb.append("    1.<a href = '" + AppConfig.appUrl + "/newCapsule" + "'>创建胶囊</a>\n");
-			sb.append("    2.<a href = '" + AppConfig.appUrl + "/login" + "'>个人中心</a>\n");
+			sb.append("    欢迎回到时间胶囊系统~\n\n");
+			sb.append("    1.<a href = '" + AppConfig.appUrl + "/newCapsule?wxopenid=" + wxopenid + "'>创建胶囊</a>\n\n");
+			sb.append("    2.<a href = '" + AppConfig.appUrl + "/home?wxopenid=" + wxopenid + "'>个人中心</a>\n\n");
 			content = StrUtil.str2ISO8859(sb.toString());
 		} else {
 			// TODO 如果该用户不存在，发送用户注册完善连接
 			StringBuffer sb = new StringBuffer();
-			sb.append("第一次光临时间胶囊吧?\n");
+			sb.append("第一次光临时间胶囊吧?\n\n");
 			sb.append("介绍一下自己吧~\n");
 			sb.append("点此<a href = '" + AppConfig.appUrl + "/register?wxopenid=" + wxopenid + "'>完善注册信息</a>");
 			content = StrUtil.str2ISO8859(sb.toString());
 		}
-
-		if (true) {
-
-		} else
-			content = StrUtil.str2ISO8859("XXX，欢迎回来！");
-		;
 
 		mpXmlOutMessage = WxMpXmlOutMessage.TEXT().fromUser(wxMessage.getToUserName())
 				.toUser(wxMessage.getFromUserName()).content(content).fromUser(wxMessage.getToUserName())

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -51,7 +51,22 @@ div {
 			</div>
 
 			<hr>
-			<form id="" action="newCapsuleContent" method="post">胶囊内容</form>
+
+
+			<form id="" action="newCapsule2Post" method="post">
+
+				<div class="am-g am-margin-top">
+					<div class="am-u-sm-4 am-u-md-2 am-text-right">胶囊内容</div>
+					<div class="am-u-sm-8 am-u-md-4 am-u-end">
+						<textarea name="content" rows="4" placeholder="给未来带去点什么？都装在胶囊里吧！"></textarea>
+					</div>
+				</div>
+
+
+				<input type="submit"
+					class="am-g am-margin-top am-btn am-btn-primary am-btn-xs"
+					value="埋入胶囊">
+			</form>
 			<br> <br> <br>
 
 
