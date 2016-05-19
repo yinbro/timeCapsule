@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.yinbro.tc.pojo.UserBean;
+import com.yinbro.tc.util.MD5Util;
 
 public class UserDAO {
 
@@ -59,7 +60,8 @@ public class UserDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public UserBean login(String strUserName, String strPassword) {
+	public UserBean login(String strUserName, String strStrPSW) {
+		String strPassword = MD5Util.getMD5Code(strStrPSW);
 		MySQLHelper helper = new MySQLHelper();
 		Connection conn = helper.getConnection();
 		String sql = "SELECT * FROM tb_user WHERE uname = '" + strUserName + "' and upassword = '" + strPassword + "'";

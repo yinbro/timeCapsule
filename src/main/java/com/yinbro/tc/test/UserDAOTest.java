@@ -21,7 +21,7 @@ public class UserDAOTest {
 		user.setEmail("yinbro@foxmail.com");
 		user.setTele("13800000000");
 		user.setWxname("wxyinbro");
-		user.setWxopenid("01000001");
+		user.setWxopenid("010001");
 		
 		UserDAO userDAO = new UserDAO();
 		System.out.println("注册是否成功：" + userDAO.signUp(user));

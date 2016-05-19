@@ -21,8 +21,8 @@ public class ShortUrlUtil {
 	public static String getShortUrl(String srcUrl) {
     	
     	String reqUrl = "{'type': 1, 'url': ['"+srcUrl+"']}";
-    	System.out.println(reqUrl);
         String short_url = null;
+        
         StringBuffer result = new StringBuffer();
         try {
             URL url = new URL("http://apis.baidu.com/chazhao/shorturl/shorturl");

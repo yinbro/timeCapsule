@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>胶囊详情</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 user-scalable=no">
 <meta name="format-detection" content="telephone=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -65,6 +66,18 @@
 	text-align: center;
 }
 </style>
+<script type="text/javascript">
+$(function(){  
+    var ua = navigator.userAgent.toLowerCase();  
+    alert(ua);
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {  
+        return true;  
+    } else {  
+        return false;  
+    }  
+})  
+</script>
+
 </head>
 <body>
 	<header class="am-topbar">

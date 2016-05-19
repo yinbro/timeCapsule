@@ -8,7 +8,9 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,17 +31,20 @@ import me.chanjar.weixin.mp.util.http.QrCodeRequestExecutor;
 @Controller
 public class CapsuleController {
 
-
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home() {
 		return "home";
 	}
-	
+
+	@RequestMapping(value = "/wxonly", method = RequestMethod.GET)
+	public String wxonly() {
+		return "wechatOnly";
+	}
+
 	@RequestMapping(value = "/newCapsule", method = RequestMethod.GET)
 	public String newCapsuleP1() {
 		return "newCapsule1";
 	}
-	
 
 	@RequestMapping(value = "/newCapsule2", method = RequestMethod.GET)
 	public String newCapsule2() {
@@ -91,8 +96,8 @@ public class CapsuleController {
 		String qrContent = AppConfig.appUrl + "/open?" + key;
 
 		String shortUrl = ShortUrlUtil.getShortUrl(qrContent);
-		System.out.println("原内容：" + qrContent);
-		System.out.println("短连接：" + shortUrl);
+		// System.out.println("原内容：" + qrContent);
+		// System.out.println("短连接：" + shortUrl);
 		File qrFile = QrCodeUtil.getQrCodeImg(shortUrl);
 		QiniuUtil qiniuUtil = new QiniuUtil();
 		qiniuUtil.upload(qrFile, key);
@@ -108,11 +113,16 @@ public class CapsuleController {
 		return null;
 	}
 
-	@RequestMapping(value="/open",method=RequestMethod.GET)
-	public String capsuleDetail() {
+	@RequestMapping(value="/open")
+	public String capsuleDetail(HttpServletRequest request) {
 		//TODO 判断访问来源、参数情况
+		String key = (String)request.getParameter("key");
+//		if (key == null) {
+//			return "wxOnly";
+//		}
 		//TODO 判断该胶囊的安全策略
 		//TODO 根据安全信息加载胶囊内容
+		System.out.println(key);
 		return "open";
 	}
 
