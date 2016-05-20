@@ -1,5 +1,6 @@
 package com.yinbro.tc.controller;
 
+import java.io.Console;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yinbro.tc.handler.ImageHandler;
 import com.yinbro.tc.handler.TextHandler;
 import com.yinbro.tc.handler.UserRegisterHandler;
+import com.yinbro.tc.handler.VideoHandler;
+import com.yinbro.tc.handler.VoiceHandler;
 
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.exception.WxErrorException;
@@ -91,11 +95,15 @@ public class WxMpController {
 		WxMpMessageRouter router = new WxMpMessageRouter(wxMpService);
 
 		/**
-		 * 需要自定义修改的过滤部分 1.处理关注事件，UserRegisterHandler
+		 * 需要自定义修改的过滤部分 1.处理关注事件，UserRegisterHandler 
 		 */
-		router.rule().async(false).event(WxConsts.EVT_SUBSCRIBE).handler(new UserRegisterHandler()).end().rule()
-				.async(false).content("注册").handler(new UserRegisterHandler()).end().rule().async(false)
-				.handler(new UserRegisterHandler()).end();
+		router.
+		rule().async(false).event(WxConsts.EVT_SUBSCRIBE).handler(new UserRegisterHandler()).end().
+		rule().async(false).msgType(WxConsts.MASS_MSG_VIDEO).handler(new VideoHandler()).end().
+		rule().async(false).msgType(WxConsts.MASS_MSG_IMAGE).handler(new ImageHandler()).end().
+		rule().async(false).msgType(WxConsts.MASS_MSG_VOICE).handler(new VoiceHandler()).end().
+		rule().async(false).handler(new UserRegisterHandler()).end();
+		
 		/** 需要自定义修改的过滤部分 */
 
 		outMessage = router.route(inMessage);
