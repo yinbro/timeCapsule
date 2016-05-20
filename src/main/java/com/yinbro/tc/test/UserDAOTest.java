@@ -1,7 +1,5 @@
 package com.yinbro.tc.test;
 
-import java.sql.SQLException;
-
 import org.junit.Test;
 
 import com.yinbro.tc.dao.UserDAO;

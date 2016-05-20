@@ -9,10 +9,9 @@ public class CapsuleBean {
 	String preOpenTime;
 	String actOpenTime;
 	String preShowText;
-	String content;
+	int contentid;
 	String subject;
 	String qrImgUrl;
-
 
 	public String getQrImgUrl() {
 		return qrImgUrl;
@@ -64,6 +63,18 @@ public class CapsuleBean {
 	public void setPutTime(String putTime) {
 		this.putTime = putTime;
 	}
+	
+	
+	
+	
+
+	@Override
+	public String toString() {
+		return "CapsuleBean [id=" + id + ", safeStrategy=" + safeStrategy + ", key=" + key + ", wxopenid=" + wxopenid
+				+ ", putTime=" + putTime + ", preOpenTime=" + preOpenTime + ", actOpenTime=" + actOpenTime
+				+ ", preShowText=" + preShowText + ", contentid=" + contentid + ", subject=" + subject + ", qrImgUrl="
+				+ qrImgUrl + ", isSnap=" + isSnap + "]";
+	}
 
 	public String getPreOpenTime() {
 		return preOpenTime;
@@ -89,12 +100,13 @@ public class CapsuleBean {
 		this.preShowText = preShowText;
 	}
 
-	public String getContent() {
-		return content;
+
+	public int getContentid() {
+		return contentid;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setContentid(int contentid) {
+		this.contentid = contentid;
 	}
 
 	public String getSubject() {
@@ -113,7 +125,4 @@ public class CapsuleBean {
 		this.isSnap = isSnap;
 	}
 
-
-	
-	
 }

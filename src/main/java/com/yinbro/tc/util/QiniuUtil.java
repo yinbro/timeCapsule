@@ -1,9 +1,6 @@
 package com.yinbro.tc.util;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.UploadManager;
@@ -30,7 +27,7 @@ public class QiniuUtil {
 			// 调用put方法上传
 			res = uploadManager.put(file, reName, auth.uploadToken(bucket));
 			// 打印返回的信息
-			System.out.println(reName + " 文件上传成功：" + res.bodyString());
+//			System.out.println(reName + " 文件上传成功：" + res.bodyString());
 		} catch (QiniuException e) {
 			Response r = e.response;
 			// 请求失败时打印的异常的信息

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -32,12 +31,12 @@
 <body>
 	<div class="header">
 		<div class="am-g">
+		<img alt="wechat limited" src="assets/i/wechatimg.jpg">
 			<h1>请使用微信打开本系统</h1>
 			<p>Wechat Only</p>
 		</div>
 		<hr />
 	</div>
-	<br>
 	<br>
 	<br>
 	<br>

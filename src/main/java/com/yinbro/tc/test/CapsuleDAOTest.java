@@ -1,7 +1,6 @@
 package com.yinbro.tc.test;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.Date;
 
 import org.junit.Test;
@@ -27,7 +26,7 @@ public class CapsuleDAOTest {
 		capsuleBean.setPreOpenTime("2014-9-4");
 		capsuleBean.setActOpenTime("2014-9-4");
 		capsuleBean.setPreShowText("未到时间，无法打开");
-		capsuleBean.setContent("时间胶囊内容");
+		capsuleBean.setContentid(99);
 		capsuleBean.setSnap(true);
 
 		CapsuleDAO capsuleDAO = new CapsuleDAO();

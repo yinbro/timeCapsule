@@ -1,8 +1,6 @@
 package com.yinbro.tc.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yinbro.tc.dao.UserDAO;
-import com.yinbro.tc.pojo.CapsuleBean;
 import com.yinbro.tc.pojo.UserBean;
 
 @Controller

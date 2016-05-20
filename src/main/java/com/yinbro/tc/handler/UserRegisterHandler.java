@@ -1,6 +1,5 @@
 package com.yinbro.tc.handler;
 
-import java.sql.SQLException;
 import java.util.Map;
 
 import com.yinbro.tc.dao.UserDAO;

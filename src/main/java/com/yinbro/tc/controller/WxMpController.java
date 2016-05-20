@@ -1,6 +1,5 @@
 package com.yinbro.tc.controller;
 
-import java.io.Console;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yinbro.tc.handler.ImageHandler;
-import com.yinbro.tc.handler.TextHandler;
 import com.yinbro.tc.handler.UserRegisterHandler;
 import com.yinbro.tc.handler.VideoHandler;
 import com.yinbro.tc.handler.VoiceHandler;
