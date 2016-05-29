@@ -51,12 +51,13 @@ public class CapsuleController {
 	private String newCapsule1(HttpServletRequest request) {
 		// 把接收到的内容先放到Session中缓存起来，跳转到胶囊内容编辑界面中进一步完善
 		CapsuleBean capsule = new CapsuleBean();
-		capsule.setSubject(request.getParameter("subject"));
+		
 		if (request.getParameter("isSnap").equalsIgnoreCase("yes")) {
 			capsule.setSnap(true);
 		} else {
 			capsule.setSnap(false);
 		}
+		capsule.setSubject(request.getParameter("subject"));
 		capsule.setPreShowText(request.getParameter("preShowText"));
 		capsule.setPutTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		capsule.setSafeStrategy(Integer.parseInt(request.getParameter("safeStrategy")));

@@ -20,8 +20,8 @@ public class CapsuleDAO {
 		MySQLHelper helper = new MySQLHelper();
 		Connection conn = helper.getConnection();
 		PreparedStatement ps = null;
-		String sql = "INSERT INTO tb_capsule (cwxopenid,ckey,cputTime,cpreOpenTime,cactOpenTime,cpreShowText,ccid,cisSnap,cQrImgUrl)"
-				+ "VALUES (?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO tb_capsule (cwxopenid,ckey,cputTime,cpreOpenTime,cactOpenTime,cpreShowText,ccid,cisSnap,cQrImgUrl,csubject)"
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, capsule.getWxopenid());
@@ -33,6 +33,7 @@ public class CapsuleDAO {
 			ps.setInt(7, capsule.getContentid());
 			ps.setInt(8, capsule.isSnap() ? 1 : 0);
 			ps.setString(9, capsule.getQrImgUrl());
+			ps.setString(10, capsule.getSubject());
 			// 返回false表示execute成功，在此取反
 			return !ps.execute();
 		} catch (SQLException e) {
@@ -55,7 +56,7 @@ public class CapsuleDAO {
 		MySQLHelper helper = new MySQLHelper();
 		Connection conn = helper.getConnection();
 		Statement stmt = MySQLHelper.createStatement(conn);
-		String sql = "SELECT cid,cwxopenid,ckey,cputTime,cpreOpenTime,cactOpenTime,cpreShowText,ccid,cisSnap,cQrImgUrl FROM tb_capsule WHERE ckey = '"
+		String sql = "SELECT cid,cwxopenid,ckey,cputTime,cpreOpenTime,cactOpenTime,cpreShowText,ccid,cisSnap,cQrImgUrl,csubject FROM tb_capsule WHERE ckey = '"
 				+ strKey + "'";
 
 		CapsuleBean capsuleBean = null;
@@ -74,9 +75,10 @@ public class CapsuleDAO {
 			capsuleBean.setActOpenTime(rs.getString(6));
 			capsuleBean.setPreShowText(rs.getString(7));
 			capsuleBean.setContentid(rs.getInt(8));
-			capsuleBean.setQrImgUrl(rs.getString(9));
 			// 三目运算，为1 即true
 			capsuleBean.setSnap(rs.getInt(9) == 1 ? true : false);
+			capsuleBean.setQrImgUrl(rs.getString(10));
+			capsuleBean.setSubject(rs.getString(11));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

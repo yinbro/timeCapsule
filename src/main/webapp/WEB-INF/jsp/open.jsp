@@ -128,7 +128,7 @@
 								</tr>
 								<tr class="am-primary">
 									<td>安全策略</td>
-									<td>${capsule.putTime }</td>
+									<td>${capsule.safeStragety }</td>
 								</tr>
 								<tr>
 									<td>封条信息</td>

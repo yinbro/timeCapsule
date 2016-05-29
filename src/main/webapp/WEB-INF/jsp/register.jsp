@@ -83,10 +83,10 @@
 
 
 						<div class="am-form-group">
-							<label for="user-name" class="am-u-sm-3 am-form-label">密码/
-								Pasword</label>
+							<label for="wxname" class="am-u-sm-3 am-form-label">微信/
+								WeChat</label>
 							<div class="am-u-sm-9">
-								<input type="password" name="password"> <small>只输一遍，要细心哦~</small>
+								<input type="text" name="wxname"> <small>微信里你的名字~</small>
 							</div>
 						</div>
 
