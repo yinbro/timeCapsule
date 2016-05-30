@@ -46,19 +46,18 @@
 				<div class="am-fl am-cf">
 					<strong class="am-text-primary am-text-lg">新建胶囊</strong> / <small>Create
 						Capsule</small>
+						
 				</div>
 			</div>
 
 			<hr>
-
-
 			<form id="" action="newCapsule2Post" method="post">
-
+				
 				<div class="am-g am-margin-top">
 					<div class="am-u-sm-12 am-u-md-12 ">
 					<div class="publish-article-content">
 				            <div class="title-tips">正文</div>
-				            <input type="hidden" id="target" name="content">
+				            <input type="hidden" id="target" name="content" value="<img src='${imgurl }' >">
 				            <div class="article-content" id="content">
 				            </div>
 				            <div class="footer-btn g-image-upload-box">
@@ -85,7 +84,7 @@
 
 
 	<footer class="blog-footer">
-		<p align="center">©2016 Time Capsule by yinbro</p>
+		<p align="center">©2016 Time Capsule </p>
 	</footer>
 
 
@@ -101,5 +100,12 @@
 	<!--<![endif]-->
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/app.js"></script>
+	<script type="text/javascript">
+	$(function(){
+	var i=	$("#target").val();
+	$("#content").html(i);
+	});
+	
+	</script>
 </body>
 </html>

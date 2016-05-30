@@ -105,6 +105,7 @@ div {
 				</div>
 				<br>
 				<hr>
+				<input type="hidden" value="${imgurl }" name="imgurl">
 				<input type="submit"
 					class="am-g am-margin-top am-btn am-btn-primary am-btn-xs"
 					value="下一步">
@@ -113,7 +114,7 @@ div {
 		</div>
 	</div>
 	<footer class="blog-footer">
-		<p align="center">©2016 Time Capsule by yinbro</p>
+		<p align="center">©2016 Time Capsule </p>
 	</footer>
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/app.js"></script>

@@ -19,22 +19,27 @@
 		max-width: 1200px;
 	}
 }
+
 @media only screen and (min-width: 641px) {
 	.blog-sidebar {
 		font-size: 1.4rem;
 	}
 }
+
 .blog-main {
 	padding: 20px 0;
 }
+
 .blog-title {
 	margin: 10px 0 20px 0;
 }
+
 .blog-meta {
 	font-size: 14px;
 	margin: 10px 0 20px 0;
 	color: #222;
 }
+
 .blog-meta a {
 	color: #27ae60;
 }
@@ -55,9 +60,26 @@
 	max-width: 100%;
 	height: auto;
 }
+
 .blog-footer {
 	padding: 10px 0;
 	text-align: center;
+}
+
+.header {
+	text-align: center;
+}
+
+#preShowText {
+font-size:2rem;
+text-align: center;
+color:red;
+	-moz-border-radius: 5em;
+	-webkit-border-radius: 5em;
+	border-radius: 5em;
+	-moz-box-shadow: 6px 3px 8px #333333;
+	-webkit-box-shadow: 6px 3px 8px #333333;
+	box-shadow: 6px 3px 8px #333333;
 }
 </style>
 <script type="text/javascript">
@@ -74,47 +96,23 @@
 
 </head>
 <body>
-	<header class="am-topbar ">
-		<h1 class="am-topbar-brand">
-			未到期时间胶囊 / <small>Time Capsule</small>
-		</h1>
-	</header>
+	<div class="header">
+		<div class="am-g">
+			<h1>时间胶囊</h1>
+			<p>
+				Time Capsule<br />把最好的，留给未来的自己
+			</p>
+		</div>
+	</div>
 
 	<div class="am-g am-g-fixed blog-g-fixed">
 		<div class="am-u-md-4 blog-sidebar">
 			<div class="am-panel-group">
 				<section class="am-panel am-panel-default">
-					<div class="am-panel-hd">胶囊详情</div>
+					<div class="am-panel-hd header">主题：<Strong>${capsule.subject }</Strong><br/><small>请与${capsule.preOpenTime }打开</small></div>
 					<div class="am-panel-bd">
-						<table class="am-table am-table-striped am-table-hover blog-meta">
-							<tbody>
-								<tr>
-									<td>用户名称</td>
-									<td>${user.name }</td>
-								</tr>
-								<tr>
-									<td>主题</td>
-									<td>${capsule.subject }</td>
-								</tr>
-								<tr class="am-primary">
-									<td>埋入日期</td>
-									<td>${capsule.putTime }</td>
-								</tr>
-								<tr>
-									<td>开启日期</td>
-									<td>${capsule.preOpenTime }</td>
-								</tr>
-								<tr class="am-primary">
-									<td>安全策略</td>
-									<td>${capsule.safeStrategy }</td>
-								</tr>
-								<tr>
-									<td>封条信息</td>
-									<td>${capsule.preShowText }</td>
-								</tr>
-
-							</tbody>
-						</table>
+						
+						<p id="preShowText"><small>封条</small>:${capsule.preShowText }</p>
 					</div>
 				</section>
 
@@ -124,7 +122,7 @@
 	</div>
 
 	<footer class="blog-footer">
-		<p>©2016 Time Capsule by yinbro</p>
+		<p>©2016 Time Capsule </p>
 	</footer>
 
 	<!--[if lt IE 9]>

@@ -142,7 +142,7 @@
 	</div>
 
 	<footer class="blog-footer">
-		<p>©2016 Time Capsule by yinbro</p>
+		<p>©2016 Time Capsule </p>
 	</footer>
 
 	<!--[if lt IE 9]>

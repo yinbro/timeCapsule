@@ -149,7 +149,7 @@
 
 
 	<footer class="blog-footer">
-		<p align="center">©2016 Time Capsule by yinbro</p>
+		<p align="center">©2016 Time Capsule </p>
 	</footer>
 
 	<!--[if lt IE 9]>
