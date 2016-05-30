@@ -92,7 +92,7 @@ div {
 							<div class="am-form-group am-form-icon">
 								<i class="am-icon-calendar"></i> <input type="text"
 									name="preOpenTime" class="am-form-field"
-									placeholder="请选择胶囊开启日期"  readonly required id="my-start-2"/>
+									placeholder="请选择胶囊开启日期" data-am-datepicker  readonly required id="my-start-2"/>
 							</div>
 						</div>
 					</div>
@@ -152,7 +152,7 @@ div {
         }
         checkin.close();
         $('#my-end-2')[0].focus();
-    }).data('amui.datepicker');
+    }).data('data-am-datepicker');
 
     var checkout = $('#my-end-2').datepicker({
       onRender: function(date, viewMode) {

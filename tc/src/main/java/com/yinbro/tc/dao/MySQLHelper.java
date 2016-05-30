@@ -9,7 +9,7 @@ public class MySQLHelper {
 	public static final String url = "jdbc:mysql://127.0.0.1/tc";
 	public static final String name = "com.mysql.jdbc.Driver";
 	public static final String user = "root";
-	public static final String password = "root";
+	public static final String password = "yinbro";
 
 	public Connection conn = null;
 

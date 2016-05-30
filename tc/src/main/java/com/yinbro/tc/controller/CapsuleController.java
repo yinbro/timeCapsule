@@ -22,7 +22,6 @@ import com.yinbro.tc.pojo.CapsuleContentBean;
 import com.yinbro.tc.pojo.UserBean;
 import com.yinbro.tc.util.AppConfig;
 import com.yinbro.tc.util.DateUtil;
-import com.yinbro.tc.util.ImageUtils;
 import com.yinbro.tc.util.MD5Util;
 import com.yinbro.tc.util.QiniuUtil;
 import com.yinbro.tc.util.QrCodeUtil;
@@ -54,7 +53,7 @@ public class CapsuleController {
 	@RequestMapping(value = "/newCapsule", method = RequestMethod.GET)
 	public String newCapsuleP1(HttpServletRequest request,Model model) {
 		//获取图片url
-		String imgurl =request.getParameter("imgurl").toString();
+		String imgurl =request.getParameter("imgurl");
 		model.addAttribute("imgurl", imgurl);
 		return "newCapsule1";
 	}
@@ -85,18 +84,6 @@ public class CapsuleController {
 		//获取图片url
 		String imgurl =request.getParameter("imgurl").toString();
 		System.out.println("imgurl"+imgurl);
-		
-		
-		try {
-			String base64img=ImageUtils.encodeImgageToBase64(new URL(imgurl));
-			
-//			System.out.println(base64img);
-			
-			model.addAttribute("base64img", base64img);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		capsule.setSubject(request.getParameter("subject"));
 		capsule.setPreShowText(request.getParameter("preShowText"));
