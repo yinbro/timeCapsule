@@ -31,13 +31,13 @@ public class ImageHandler implements WxMpMessageHandler {
 
 		QiniuUtil qiniuUtil = new QiniuUtil();
 		URL url = null;
-		String strImgurl = null;
-		String strImgName = null;
+		long l = new Date().getTime();
+		//以时间命名文件
+		String img =String.valueOf(l);
 		try {
 			url = new URL(wxMessage.getPicUrl());
-			qiniuUtil.uploadByUrl(url, MD5Util.getSecretKeyByDate(new Date()));
-			strImgurl = qiniuUtil.getDownloadUrl(strImgName);
-			System.out.println("Picture URL：" + strImgurl);
+			qiniuUtil.uploadByUrl(url, img);
+			System.out.println("Picture URL：" + img);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,10 +48,9 @@ public class ImageHandler implements WxMpMessageHandler {
 		StringBuffer sb = new StringBuffer();
 		sb.append("收到您发送的一张图片！\n");
 		sb.append("        需要把图片放进一个新的胶囊吗？\n");
-		sb.append("<a href = '" + AppConfig.appUrl + "/newCapsule?wxopenid=" + wxopenid + "&imgurl=" + strImgurl
-				+ "'>创建胶囊</a>");
+		sb.append("<a href = '" + AppConfig.appUrl + "/newCapsule?wxopenid=" + wxopenid + "&img=" + img + "'>创建胶囊</a>");
 		String content = StrUtil.str2ISO8859(sb.toString());
-//		System.out.println(content);
+		// System.out.println(content);
 		mpXmlOutMessage = WxMpXmlOutMessage.TEXT().fromUser(wxMessage.getToUserName())
 				.toUser(wxMessage.getFromUserName()).content(content).fromUser(wxMessage.getToUserName())
 				.toUser(wxMessage.getFromUserName()).build();

@@ -51,9 +51,9 @@ public class CapsuleController {
 	}
 
 	@RequestMapping(value = "/newCapsule", method = RequestMethod.GET)
-	public String newCapsuleP1(HttpServletRequest request,Model model) {
-		//获取图片url
-		String imgurl =request.getParameter("imgurl");
+	public String newCapsuleP1(HttpServletRequest request, Model model) {
+		// 获取图片url
+		String imgurl = request.getParameter("imgurl");
 		model.addAttribute("imgurl", imgurl);
 		return "newCapsule1";
 	}
@@ -71,7 +71,7 @@ public class CapsuleController {
 
 	// 接受创建胶囊1界面中的参数，缓存到Session中，并跳转到界面2
 	@RequestMapping(value = "/newCapsule1Post", method = RequestMethod.POST)
-	private String newCapsule1(HttpServletRequest request,Model model ) {
+	private String newCapsule1(HttpServletRequest request, Model model) {
 		// 把接收到的内容先放到Session中缓存起来，跳转到胶囊内容编辑界面中进一步完善
 		CapsuleBean capsule = new CapsuleBean();
 
@@ -80,11 +80,11 @@ public class CapsuleController {
 		} else {
 			capsule.setSnap(false);
 		}
-		
-		//获取图片url
-		String imgurl =request.getParameter("imgurl").toString();
-		System.out.println("imgurl"+imgurl);
-		
+
+		// 获取图片url
+		String imgurl = request.getParameter("imgurl").toString();
+		System.out.println("imgurl" + imgurl);
+
 		capsule.setSubject(request.getParameter("subject"));
 		capsule.setPreShowText(request.getParameter("preShowText"));
 		capsule.setPutTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
@@ -94,7 +94,7 @@ public class CapsuleController {
 		capsule.setWxopenid((String) httpSession.getAttribute("wxopenid"));
 
 		httpSession.setAttribute("capsule", capsule);
-		//将imgurl存在session
+		// 将imgurl存在session
 		httpSession.setAttribute("imgurl", imgurl);
 
 		// System.out.println(capsule.toString());
@@ -103,13 +103,13 @@ public class CapsuleController {
 
 	// 接受创建胶囊2界面中的胶囊内容信息，完成整个胶囊Bean的创建
 	@RequestMapping(value = "/newCapsule2Post", method = RequestMethod.POST)
-	private String newCapsule2Post(HttpServletRequest request,Model model) {
+	private String newCapsule2Post(HttpServletRequest request, Model model) {
 		CapsuleBean capsule = (CapsuleBean) request.getSession().getAttribute("capsule");
 		if (capsule.getWxopenid() == null) {
 			System.out.println("参数异常，无wxopenid");
 			return null;
 		}
-		
+
 		// 生成KEY
 		String key = MD5Util.getSecretKeyByDate(new Date());
 
@@ -118,8 +118,8 @@ public class CapsuleController {
 		String qrContent = AppConfig.appUrl + "/open?key=" + key;
 
 		String shortUrl = ShortUrlUtil.getShortUrl(qrContent);
-		System.out.println("原内容：" + qrContent);
-		System.out.println("短连接：" + shortUrl);
+		// System.out.println("原内容：" + qrContent);
+		// System.out.println("短连接：" + shortUrl);
 		File qrFile = QrCodeUtil.getQrCodeImg(shortUrl);
 		QiniuUtil qiniuUtil = new QiniuUtil();
 		qiniuUtil.upload(qrFile, key);
@@ -129,7 +129,7 @@ public class CapsuleController {
 		// 填充Content
 		CapsuleContentBean ccb = new CapsuleContentBean();
 		String strContent = request.getParameter("content");
-		 System.out.println(strContent);
+		// System.out.println(strContent);
 		ccb.setCccontent(strContent);
 		CapsuleContentDAO capsuleContentDAO = new CapsuleContentDAO();
 		int ccbid = capsuleContentDAO.createCapsuleContent(ccb);
