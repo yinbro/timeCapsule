@@ -69,18 +69,6 @@
 .header {
 	text-align: center;
 }
-
-#preShowText {
-font-size:2rem;
-text-align: center;
-color:red;
-	-moz-border-radius: 5em;
-	-webkit-border-radius: 5em;
-	border-radius: 5em;
-	-moz-box-shadow: 6px 3px 8px #333333;
-	-webkit-box-shadow: 6px 3px 8px #333333;
-	box-shadow: 6px 3px 8px #333333;
-}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -98,9 +86,11 @@ color:red;
 <body>
 	<div class="header">
 		<div class="am-g">
-			<h1>时间胶囊</h1>
+			<br>
+			<h1>未到开启日期！</h1>
 			<p>
-				Time Capsule<br />把最好的，留给未来的自己
+				<Strong>请于 <small>${capsule.preOpenTime }</small> 后开启
+				</Strong><br /><br /><br /><br />
 			</p>
 		</div>
 	</div>
@@ -108,11 +98,10 @@ color:red;
 	<div class="am-g am-g-fixed blog-g-fixed">
 		<div class="am-u-md-4 blog-sidebar">
 			<div class="am-panel-group">
-				<section class="am-panel am-panel-default">
-					<div class="am-panel-hd header">主题：<Strong>${capsule.subject }</Strong><br/><small>请与${capsule.preOpenTime }打开</small></div>
-					<div class="am-panel-bd">
-						
-						<p id="preShowText"><small>封条</small>:${capsule.preShowText }</p>
+				<section class="am-panel am-panel-danger ">
+					<div class="am-panel-hd header am-round">
+						<br> <Strong>${capsule.preShowText }
+						</Strong> <br> <br>
 					</div>
 				</section>
 
@@ -120,9 +109,15 @@ color:red;
 		</div>
 
 	</div>
-
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<footer class="blog-footer">
-		<p>©2016 Time Capsule </p>
+		<p>©2016 Time Capsule</p>
 	</footer>
 
 	<!--[if lt IE 9]>

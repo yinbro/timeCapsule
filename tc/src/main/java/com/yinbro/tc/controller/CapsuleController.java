@@ -53,7 +53,8 @@ public class CapsuleController {
 	@RequestMapping(value = "/newCapsule", method = RequestMethod.GET)
 	public String newCapsuleP1(HttpServletRequest request, Model model) {
 		// 获取图片url
-		String imgurl = request.getParameter("imgurl");
+		String img = request.getParameter("img");
+		String imgurl = new QiniuUtil().getDownloadUrl(img);
 		model.addAttribute("imgurl", imgurl);
 		return "newCapsule1";
 	}
@@ -83,7 +84,7 @@ public class CapsuleController {
 
 		// 获取图片url
 		String imgurl = request.getParameter("imgurl").toString();
-		System.out.println("imgurl" + imgurl);
+		System.out.println("imgurl:" + imgurl);
 
 		capsule.setSubject(request.getParameter("subject"));
 		capsule.setPreShowText(request.getParameter("preShowText"));
@@ -129,7 +130,7 @@ public class CapsuleController {
 		// 填充Content
 		CapsuleContentBean ccb = new CapsuleContentBean();
 		String strContent = request.getParameter("content");
-		// System.out.println(strContent);
+		 System.out.println(strContent);
 		ccb.setCccontent(strContent);
 		CapsuleContentDAO capsuleContentDAO = new CapsuleContentDAO();
 		int ccbid = capsuleContentDAO.createCapsuleContent(ccb);
@@ -180,7 +181,7 @@ public class CapsuleController {
 		// System.out.println(capsuleContentBean.toString());
 
 		session.setAttribute("content", capsuleContentBean.getCccontent());
-		if (i < 0) {
+		if (i <= 0) {
 			capsule.setActOpenTime(nowtime);
 			capsuleDAO.updateActOpenTime(capsule);
 			return "open";

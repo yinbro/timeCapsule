@@ -19,22 +19,27 @@
 		max-width: 1200px;
 	}
 }
+
 @media only screen and (min-width: 641px) {
 	.blog-sidebar {
 		font-size: 1.4rem;
 	}
 }
+
 .blog-main {
 	padding: 20px 0;
 }
+
 .blog-title {
 	margin: 10px 0 20px 0;
 }
+
 .blog-meta {
 	font-size: 14px;
 	margin: 10px 0 20px 0;
 	color: #222;
 }
+
 .blog-meta a {
 	color: #27ae60;
 }
@@ -81,68 +86,69 @@
 		</h1>
 	</header>
 
-	<div class="am-g am-g-fixed blog-g-fixed">
-		<div class="am-u-md-8">
-			<article class="blog-main">
-				<div class="am-g blog-content">
-					<h3 >主题:${capsule.subject }</h3>
-					<img class="am-img-responsive" alt="capsule slogen"
-						src="assets/i/TimeCapsuleImage.jpg">
-					<hr>
-					<div class="am-u-lg-7">
-						<h3>内容:</h3>
-						<!-- content -->
-						<hr>
-						${content }
+	<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi">
+		<h2 class="am-titlebar-title ">主题:</h2>
+		<nav class="am-titlebar-nav">
+			<a href="#more" class="">${capsule.subject } &raquo;</a>
+		</nav>
+	</div>
 
-						<!-- content -->
-					</div>
-				</div>
-			</article>
-			<hr class="am-article-divider blog-hr">
-		</div>
-
-		<div class="am-u-md-4 blog-sidebar">
-			<div class="am-panel-group">
-				<section class="am-panel am-panel-default">
-					<div class="am-panel-hd">胶囊详情</div>
-					<div class="am-panel-bd">
-						<table class="am-table am-table-striped am-table-hover blog-meta">
-							<tbody>
-								<tr>
-									<td>用户名称</td>
-									<td>${user.name }</td>
-								</tr>
-								<tr class="am-primary">
-									<td>埋入日期</td>
-									<td>${capsule.putTime }</td>
-								</tr>
-								<tr>
-									<td>开启日期</td>
-									<td>${capsule.preOpenTime }</td>
-								</tr>
-								<tr class="am-primary">
-									<td>安全策略</td>
-									<td>${capsule.safeStrategy }</td>
-								</tr>
-								<tr>
-									<td>封条信息</td>
-									<td>${capsule.preShowText }</td>
-								</tr>
-
-							</tbody>
-						</table>
-						<a class="am-btn am-btn-danger am-btn-sm am-round" href="#">阅后销毁</a>
-					</div>
-				</section>
-
+	<div class="am-panel-group">
+		<section class="am-panel am-panel-default">
+			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi am-no-layout">
+			<h2 class="am-titlebar-title ">内容:</h2>
 			</div>
-		</div>
+			<div>
+				
+				<!-- content -->
+				<hr>
+				${content }
+
+				<!-- content -->
+			</div>
+		</section>
+	</div>
+
+
+
+	<div class="am-panel-group">
+		<section class="am-panel am-panel-default">
+			<div class="am-panel-hd">胶囊详情</div>
+			<div class="am-panel-bd">
+				<table class="am-table am-table-striped am-table-hover blog-meta">
+					<tbody>
+						<tr>
+							<td>用户名称</td>
+							<td>${user.name }</td>
+						</tr>
+						<tr class="am-primary">
+							<td>埋入日期</td>
+							<td>${capsule.putTime }</td>
+						</tr>
+						<tr>
+							<td>开启日期</td>
+							<td>${capsule.preOpenTime }</td>
+						</tr>
+						<tr class="am-primary">
+							<td>安全策略</td>
+							<td>${capsule.safeStrategy }</td>
+						</tr>
+						<tr>
+							<td>封条信息</td>
+							<td>${capsule.preShowText }</td>
+						</tr>
+
+					</tbody>
+				</table>
+				<a class="am-btn am-btn-danger am-btn-sm am-round" href="#">阅后销毁</a>
+			</div>
+		</section>
 
 	</div>
 
+
 	<footer class="blog-footer">
-		<p>©2016 Time Capsule </p>
+		<p>©2016 Time Capsule</p>
 	</footer>
 
 	<!--[if lt IE 9]>

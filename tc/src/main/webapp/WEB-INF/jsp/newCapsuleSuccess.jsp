@@ -36,6 +36,9 @@
 			<p>
 				我在 ${ capsule.preOpenTime} 等你<br />
 			</p>
+			<p>
+				KEY: ${ capsule.key}<br />
+			</p>
 		</div>
 		<hr />
 	</div>
@@ -52,7 +55,6 @@
 						alt="时间胶囊二维码图片" />
 					<figcaption class="am-figure-capition-btm">
 						你可以自行保存本时间胶囊的二维码</figcaption>
-
 
 				</figure>
 			</div>

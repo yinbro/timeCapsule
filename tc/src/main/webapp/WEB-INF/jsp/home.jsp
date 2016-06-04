@@ -38,7 +38,7 @@
 	<!-- Content Start -->
 	<div class="am-u-md-4 blog-sidebar">
 		<div class="am-panel-group">
-			<section class="am-panel am-panel-default">
+			<section class="am-panel am-panel-primary">
 				<div class="am-panel-hd">用户信息</div>
 				<div class="am-panel-bd">
 					<table class="am-table am-table-striped am-table-hover blog-meta">
@@ -48,19 +48,19 @@
 								<td>${user.name }</td>
 							</tr>
 							<tr class="am-primary">
-								<td>用户信息</td>
+								<td>个性签名</td>
 								<td>${user.showMsg }</td>
 							</tr>
 							<tr>
-								<td>用户电话</td>
+								<td>联系电话</td>
 								<td>${user.tele }</td>
 							</tr>
 							<tr class="am-primary">
-								<td>微信名称</td>
+								<td>微信 I D</td>
 								<td>${user.wxname }</td>
 							</tr>
 							<tr>
-								<td>用户邮箱</td>
+								<td>联系邮箱</td>
 								<td>${user.email }</td>
 							</tr>
 						</tbody>
@@ -69,34 +69,37 @@
 			</section>
 		</div>
 	</div>
-	<div class="am-u-md-4 blog-sidebar">
-	<div class="am-panel-hd">用户胶囊</div>
+
+	<hr>
+
+	<div class="am-u-md-4 blog-sidebar am-panel-warning">
+		<div class="am-panel-hd ">用户胶囊</div>
 		<div class="am-panel-group">
 			<section data-am-widget="accordion"
-				class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+				class="am-accordion am-accordion-gapped am-accordion-primary" data-am-accordion='{  }'>
 				<c:forEach var="c" items="${cbl}" varStatus="status">
 					<dl class="am-accordion-item ">
 						<dt class="am-accordion-title">主题：${c.subject }</dt>
 						<dd class="am-accordion-bd am-collapse ">
 							<!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
 							<div class="am-accordion-content">
-								放置时间：${c.putTime }<br /> 预计开启时间：${c.preOpenTime } <br /> 封条信息：
-								${c.preShowText }<br /> 状态：
+								埋藏时间：${c.putTime }<br /> 计划开启：${c.preOpenTime } <br />
+								胶囊封条：${c.preShowText }<br /> 开启状态：
 								<c:if test="${c.actOpenTime==null }">
-										没有阅读过
+										未开启
 									</c:if>
 								<c:if test="${c.actOpenTime!=null }">
-										阅读过<br />
-									打开时间：${c.actOpenTime}
+										已开启<br />
+								开启时间：${c.actOpenTime}
 									</c:if>
-								<br /> <a href="/tc/open?key=${c.key }">open</a>
+								<br /> <a href="/tc/open?key=${c.key }">查看胶囊内容</a>
 							</div>
 						</dd>
 					</dl>
 				</c:forEach>
 			</section>
-			</div>
 		</div>
+	</div>
 	<!-- Content End -->
 	<footer class="blog-footer">
 		<p align="center">©2016 Time Capsule</p>

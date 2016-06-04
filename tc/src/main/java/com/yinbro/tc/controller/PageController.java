@@ -12,6 +12,14 @@ public class PageController {
 	public String _blankPage() {
 		return "_blank";
 	}
+	
+	
+
+	@RequestMapping("/shop")
+	public String shop() {
+		return "shop_index";
+	}
+
 
 	@RequestMapping(value = "/wxOnly")
 	public String wxOnly() {
