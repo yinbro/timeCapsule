@@ -35,6 +35,7 @@ public class UserRegisterHandler implements WxMpMessageHandler {
 			sb.append("    欢迎回到时间胶囊系统~\n\n");
 			sb.append("    1.<a href = '" + AppConfig.appUrl + "/newCapsule?wxopenid=" + wxopenid + "'>创建胶囊</a>\n\n");
 			sb.append("    2.<a href = '" + AppConfig.appUrl + "/home?wxopenid=" + wxopenid + "'>个人中心</a>\n\n");
+			sb.append("    3.<a href = '" + AppConfig.appUrl + "/shop" + "'>实体商城</a>\n\n");
 			content = StrUtil.str2ISO8859(sb.toString());
 		} else {
 			// TODO 如果该用户不存在，发送用户注册完善连接

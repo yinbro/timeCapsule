@@ -25,9 +25,9 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
+
 	<!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
-	<mvc:annotation-driven  />
+	<mvc:annotation-driven />
 	<!-- 静态资源的访问 -->
 	<mvc:resources location="/assets/" mapping="/assets/**" />
 </beans>
